@@ -218,16 +218,30 @@
 //         document.write("Not a digit");
 // }
 
-var i = 1;
+// var i = 1;
 
-do {
-    document.write("멋쟁이사자i: " + i++ + "<br/>")
-} while (i <1)
+// do {
+//     document.write("멋쟁이사자i: " + i++ + "<br/>")
+// } while (i <1)
 
-document.write("=========<br/>");
+// document.write("=========<br/>");
 
-var j = 1;
+// var j = 1;
 
-while(j <1){
-    document.write("멋쟁이사자i: " + i++ + "<br/>")
+// while(j <1){
+//     document.write("멋쟁이사자i: " + i++ + "<br/>")
+// }
+
+for (var i = 1; i<=100; i++){
+    if(i==20){
+        break;
+    }
+    document.write(i + "<br/>");
+}
+
+for (var j = 1; j<=100; j++){
+    if(j==20){
+        continue;
+    }
+    document.write(j + "<br/>");
 }
