@@ -1,70 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>부트스트랩 실습</title>
-    <script src="default.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <style>
-        footer {
-            width: 100vw;
-            position: fixed;
-            bottom: 0;
-            text-align: center;
-        }
-
-        #note {
-            min-height: 200px;
-            border: 1px solid #000;
-            padding: 10px;
+        .todo {
+            min-width: 300px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My note</h1>
-    </header>
-    <main>
-        <section class="container">
-            <div id="note"
-                contenteditable="true"
-                oninput="saveNote()"
-                ></div>
-            <button type="button"
-                    class="btn btn-danger"
-                    onclick="clearNote()"
-                >Clear</button>
-        </section>
-    </main>
-    <footer style="position: fixed; bottom: 0;">
-        <div style="margin: 0 auto;">
-            Copyright 2023 Mynote.
+<header>
+    <div class="d-flex justify-content-center">
+        <h1 class="text-center mt-4 text-bg-primary rounded-2 w-25 p-1">TODO LIST</h1>
+    </div>
+    <div class="container mt-4 w-50">
+        <div class="list-group" id="todolist">
+            <div class="d-flex justify-content-between list-group-item">
+                <div class="fw-bold p-2 fs-5">오늘의 할일</div>
+                <a href="#" onclick="addTodo()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                         class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script>
-        function getNote() {
-            var note = localStorage.getItem('note');
-            console.log('getNote: ', note);
-            document.getElementById('note').innerHTML = note;
+    </div>
+</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script>
+
+    let htmlStr = "";
+    var totoElementIndex = 0;
+    var todoList = [];
+
+    function getTodo() {
+        var list = localStorage.getItem('todo')?.split(',') || [];
+        console.log(list);
+        for(var i = 0; i < list.length; i++) {
+            addTodo();
+            document.querySelector(`#todoEl-${i}`).innerHTML = list[i];
         }
 
-        function saveNote() {
-            var note = document.getElementById("note").innerHTML;
-            localStorage.setItem('note', note);
-        }
+    }
 
-        function clearNote() {
-            console.log("clear note!");
-            localStorage.clear();
-            document.getElementById('note').innerHTML = '';
-        }
-        
-        getNote();
-    </script>
+    function saveTodo(index) {
+        console.log(index, document.querySelector(`#todoEl-${index}`));
+        var todo = document.querySelector(`#todoEl-${index}`).innerHTML;
+        todoList[index] = todo;
+        localStorage.setItem('todo', todoList.join(','));
+    }
 
+    function removeTodo(target) {
+        var list = document.getElementById('todolist');
+        list.removeChild(target.parentNode);
+    }
+
+    function addTodo() {
+        const index = totoElementIndex;
+        htmlStr = `<div class="d-flex justify-content-between list-group-item">
+                            <div class="fw-bold p-2 fs-5 todo"
+                                contenteditable="true"
+                                id="todoEl-${index}"
+                                oninput="saveTodo(${index})" style="min-width: 300px;"></div>
+                            <a href="#" onclick="removeTodo(this)"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-dash-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>
+                            </svg></a>
+                        </div>`;
+        todoList[index] = "";
+        var todolist = document.querySelector("#todolist");
+        totoElementIndex++;
+        todolist.insertAdjacentHTML('beforeend', htmlStr);
+    }
+
+    getTodo();
+    // function selectCard(e){
+    //     console.log(e.currentTarget.classList)
+    //     console.log(e.target.classList)
+    // }
+</script>
 </body>
 </html>
