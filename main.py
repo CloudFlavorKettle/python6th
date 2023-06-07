@@ -1,21 +1,54 @@
-import array
-str_roll = array.array('i', [101, 102, 103, 104, 105])
-print(str_roll[0])
-print(str_roll[1])
-print(str_roll[2])
-print(str_roll[3])
-print(str_roll[4])
+from array import *
 
-for element in str_roll:
-    print(element)
+stu_roll = array('i', [101, 102, 103, 104, 105])
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
 
-print("인덱스를 이용한 순회")
-n = len(str_roll)
-for i in range(n):
-    print(i, "=", str_roll[i])
+# print("Array After Insert")
+# stu_roll.insert(1, 106)
+# stu_roll.insert(3, 107)
+# n = len(stu_roll)
+# i = 0
+# while i <n:
+#     print(stu_roll[i])
+#     i += 1
 
-print("인덱스를 사용한 while 루프 배열 순회")
+# print("배열 요소 삭제")
+#
+# stu_roll.remove(101)
+# n = len(stu_roll)
+# i = 0
+# while i < n:
+#     print(stu_roll[i])
+#     i += 1
+
+print("배열 pop() 함수 실습")
+
+stu_roll.pop(1)
+n = len(stu_roll)
 i = 0
 while i < n:
-    print(str_roll[i])
+    print(stu_roll[i])
+    i += 1
+
+print("array index 메소드")
+print(stu_roll.index(101))
+
+print("exxtend() 메소드")
+arr = array('i', [201, 208, 209])
+stu_roll.extend(arr)
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
+    i += 1
+
+stu_roll.reverse()
+n = len(stu_roll)
+i = 0
+while i < n:
+    print(stu_roll[i])
     i += 1
