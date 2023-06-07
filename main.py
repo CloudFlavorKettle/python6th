@@ -1,6 +1,16 @@
-s = "       Hello World     "
+def add():
+    x = 10
+    y = 20
+    c = x + y
+    return c
 
-print(s.replace("world".title(), "there"))
-print(s.split(","))
+sum1 = add()
+print(sum1)
 
-print(s.startswith("Hello"))
+def add2():
+    x = 10
+    y = 20
+    return x + y
+
+sum2 = add2()
+print(sum2)
