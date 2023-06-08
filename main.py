@@ -1,10 +1,11 @@
-# 사용자 입력으로 리스트 만들기
+def generate_alophabet(start_latter, end_latter):
+    start = ord(start_latter)
+    end = ord(end_latter)
+    while start <= end:
+        yield chr(start)
+        start += 1
 
-user_input_list = []
-num_elements = int(input("Enter Number of Element: "))
-for i in range(num_elements):
-    user_input_list.append(input("Enter Element:"))
+runner = generate_alophabet('A', 'F')
 
-print("User Input List:")
-for element in user_input_list:
-    print(element)
+for letter in runner:
+    print(letter)
