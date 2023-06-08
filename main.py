@@ -1,16 +1,26 @@
-a = 50
-def show():
-    a = 10
-    print("show-A: ", a)
 
-show()
-print("A: ", a)
+fruits = ["apple", "banana", "cherry", "orange"]
 
-def show2():
-    global a
-    print("show2-A: ", a)
-    a = 20
-    print("show-A2: ", a)
+print(fruits)
 
-show2()
-print("A: ", a)
+fruits.append("grape")
+
+print(fruits)
+
+fruits.insert(2, "kiwi")
+
+print(fruits)
+
+print(fruits.pop())
+print(fruits.pop(1))
+
+print(fruits)
+
+fruits.append("cherry")
+print(fruits)
+
+print(fruits.index("cherry"))
+print(fruits.remove("cherry"))
+
+fruits.reverse()
+print(fruits)
