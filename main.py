@@ -1,26 +1,19 @@
 
 fruits = ["apple", "banana", "cherry", "orange"]
+vegetables = ["carrot", "cucumber"]
 
-print(fruits)
+grocery = fruits + vegetables
+print(grocery)
 
-fruits.append("grape")
+numbers = [10, 5, 8, 1, 7]
+numbers.sort()
+print(numbers)
 
-print(fruits)
+slice_numbers = numbers[1:4]
+print(slice_numbers)
 
-fruits.insert(2, "kiwi")
+numbers_copy = numbers.copy()
+print(numbers_copy)
 
-print(fruits)
-
-print(fruits.pop())
-print(fruits.pop(1))
-
-print(fruits)
-
-fruits.append("cherry")
-print(fruits)
-
-print(fruits.index("cherry"))
-print(fruits.remove("cherry"))
-
-fruits.reverse()
-print(fruits)
+numbers_clone = numbers[:]
+print(numbers_clone)
