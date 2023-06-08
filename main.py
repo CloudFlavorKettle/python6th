@@ -1,15 +1,23 @@
-def add(x,y):
-    z = x + y
-    print("Addition: ", z)
-add(5,2)
+def show():
+    x = 10
+    print(x)
 
-def add(*num):
-    z = num[0] + num[1] + num[2]
-    print("Addition: ", z)
+def add(y):
+    print(y)
 
-add(5,2,4)
+a = 50
+def show():
+    x = 10
+    print(x)
+    print(a)
 
-def add(x, *num):
-    z = x + num[0] + num[1]
-    print("Addition: X *", z)
-add(5,2,4)
+show()
+
+i = 0
+
+def myfun():
+    a = i + 1
+    print("My function", a)
+
+myfun()
+print("Gobal Variable a:", a)
