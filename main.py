@@ -1,18 +1,18 @@
-from array import *
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
 
-def show(ar):
-    print("Passed Array ar:", ar)
-    print(type(ar))
-    for i in ar:
-        print(i)
-    return ar
+    def __str__(self):
+        return f'Vector({self.x}, {self.y})'
 
+a = Vector(1, 2)
+b = Vector(3, 4)
 
-print("=====")
-a = array('i', [101, 102, 103, 104])
-y = show(a)
-print("Return Array Y:", y)
-print(type(y))
-for i in y:
-    print(i)
+print(a)
+print(b)
+c = a + b
+print(c)
