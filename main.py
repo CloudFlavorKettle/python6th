@@ -1,18 +1,22 @@
-# import os
-#
-# filename = 'example.txt'
-#
-# print("파일이 존재하는지 확인하기")
-# if os.path.isfile(filename):
-#     print(f"{filename}이 존재합니다.")
-# else:
-#     print(f"{filename}이 없습니다.")
+class Car:
+    wheels = 4
 
-file_object = open('list_example', 'w')
+    def __init__(self, make, model, color):
+        self.make = make
+        self.model = model
+        self.color = color
 
-content_list = ["Python", "Java", "C++", "Javascript"]
+    def drive(self):
+         return "The car is moving!"
 
-for item in content_list:
-    file_object.write(item + '\n')
+    def stop(self):
+        return "The car has stooped."
 
-file_object.close()
+my_car = Car("Kia", "Morning","Blue")
+
+# 속성 사용
+print(my_car.make)
+
+# 메소드 호출
+print(my_car.drive())
+print(my_car.stop())
