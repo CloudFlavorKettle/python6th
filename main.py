@@ -1,56 +1,36 @@
-def insertion_sort(arr, start, end):
-    for i in range(start + 1, end + 1):
-        key_item = arr[i]
-        j = i - 1
-        while j >= start and arr[j] > key_item:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key_item
+class ListNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
+class Stack:
+    def __init__(self):
+        self.head = None
+        self.size = 0
 
-def merge(arr, start, mid, end):
-    if arr[mid - 1] < arr[mid]:
-        return
+    def is_empty(self):
+        return self.size == 0
 
-    left = arr[start:mid]
-    right = arr[mid:end]
+    def push(self, value):
+        new_node = ListNode(value)
+        new_node.next = self.head
+        self.head = new_node
+        self.size += 1
 
-    k = start
-    i = 0
-    j = 0
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("pop from an empty stack")
+        value = self.head.value
+        self.head = self.head.next
+        self.size -= 1
+        return value
 
-    while start + 1 < mid and mid + j < end:
-        if left[i] < right[j]:
-            arr[k] = left[i]
-            i += 1
-        else:
-            arr[k] = right[j]
-            j += 1
-        k += 1
-    if start + i < mid:
-        arr[k:end] = left[i:]
-    if mid + j < end:
-        arr[k:end] = right[j:]
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+stack.push(5)
 
-
-def timsort(arr):
-    min_run = 2
-    n = len(arr)
-
-    for i in range(0, n, min_run):
-        insertion_sort(arr, i, min((i + min_run), n - 1))
-
-    size = min_run
-    while size < n:
-        for start in range(0, n, size * 2):
-            mid = start + size - 1
-            end = min((start + size * 2 - 1), (n - 1))
-            merge(arr, start, mid, end)
-        size *= 2
-
-    return arr
-
-
-a = ['f', 'g', 'h', 'z', 's', 'b', 'c', 'd']
-
-print(timsort(a))
+for _ in range(5):
+    print(stack.pop())
